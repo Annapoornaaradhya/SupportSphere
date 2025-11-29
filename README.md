@@ -10,9 +10,6 @@ It combines a Streamlit chat UI, Pinecone vector search, Sentence Transformers e
 - **RAG-based answers** (Pinecone + MiniLM embeddings)
 - **FLAN-T5-Large text generation** for detailed, conversational responses
 - **Modern chat UI**
-  - Dark theme with user/assistant bubbles
-  - “SupportSphere is thinking…” spinner
-  - Typing-style effect for the latest bot answer
 - **Escalation to human agent** (logs stored in CSV)
 - **Data ingestion pipeline** to index customer-support answers in Pinecone
 - **FAQ viewer** in sidebar
