@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "category": "Account & Login",
+    "question": "I forgot my password. How can I reset it?",
+    "answer": "Click on the 'Forgot Password' link on the login page. Enter your registered email address. You will receive a reset link valid for 30 minutes. Follow the link to set a new password.",
+    "tags": ["password", "login", "reset"]
+  },
+  {
+    "id": 2,
+    "category": "Account & Login",
+    "question": "I did not receive the password reset email.",
+    "answer": "Please check your spam or promotions folder. If you still do not see the email after 5 minutes, ensure that you entered the correct registered email. If the issue continues, contact support at support@example.com.",
+    "tags": ["password", "email", "otp"]
+  },
+  {
+    "id": 3,
+    "category": "Billing",
+    "question": "What payment methods do you support?",
+    "answer": "We currently support credit cards, debit cards, UPI, and NetBanking for customers in India. International customers can pay through credit cards and PayPal.",
+    "tags": ["billing", "payment"]
+  },
+  {
+    "id": 4,
+    "category": "Billing",
+    "question": "How can I download my invoice?",
+    "answer": "Go to the 'Billing' section in your dashboard, select the relevant month, and click on 'Download Invoice'. The invoice will be downloaded as a PDF.",
+    "tags": ["invoice", "billing", "pdf"]
+  },
+  {
+    "id": 5,
+    "category": "Product Usage",
+    "question": "How do I change my registered email address?",
+    "answer": "Navigate to Settings → Profile → Email. Enter your new email address and confirm it using the verification link sent to your new email.",
+    "tags": ["email", "settings", "profile"]
+  },
+  {
+    "id": 6,
+    "category": "Product Usage",
+    "question": "Can I add multiple team members to my account?",
+    "answer": "Yes, go to Settings → Team. Click 'Invite Member' and enter their email ID. They will receive an invitation link to join your workspace.",
+    "tags": ["team", "workspace", "collaboration"]
+  },
+  {
+    "id": 7,
+    "category": "Technical Issues",
+    "question": "The website is loading slowly. What should I do?",
+    "answer": "Try clearing your browser cache and cookies, and ensure that your internet connection is stable. If the problem persists, please report it from the 'Help & Support' section with a screenshot.",
+    "tags": ["performance", "slow", "website"]
+  },
+  {
+    "id": 8,
+    "category": "Technical Issues",
+    "question": "I am seeing an error message when making payment.",
+    "answer": "Please verify your card details and ensure that your bank has enabled online transactions. If the error continues, take a screenshot of the error and contact support at billing@example.com.",
+    "tags": ["error", "payment", "technical"]
+  }
+]
