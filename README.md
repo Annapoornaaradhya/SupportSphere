@@ -1,93 +1,123 @@
-# 💬 SupportSphere – RAG-Powered Customer Support Assistant
+# 💬 SupportSphere – AI-Powered Customer Support Assistant (RAG Agent)
 
-SupportSphere is an AI-driven customer-support assistant built using Retrieval-Augmented Generation (RAG).  
-It combines a Streamlit chat UI, Pinecone vector search, Sentence Transformers embeddings, and FLAN-T5-Large to deliver fast, accurate, and human-like responses.
-
----
-
-## ✨ Features
-
-- **RAG-based answers** (Pinecone + MiniLM embeddings)
-- **FLAN-T5-Large text generation** for detailed, conversational responses
-- **Modern chat UI**
-- **Escalation to human agent** (logs stored in CSV)
-- **Data ingestion pipeline** to index customer-support answers in Pinecone
-- **FAQ viewer** in sidebar
+SupportSphere is an AI-driven customer support agent built using Retrieval-Augmented Generation (RAG).  
+It helps users instantly resolve FAQs using a knowledge base, while escalating complex cases to human agents.  
+The agent is designed with a modern UI, typing animations, and configurable reply tone, offering a smooth support experience.
 
 ---
 
-## 🧱 Project Structure
+## 📌 1. Overview of the Agent
 
-```text
-SupportSphere/
-├─ app.py                     # Streamlit frontend: UI, chat, typing effect, spinner
-├─ rag_pipeline.py            # Retrieval + generation pipeline (Pinecone + FLAN-T5)
-├─ ingest_to_pinecone.py      # Encode dataset and upload vectors to Pinecone
-├─ config.py                  # App title/tagline, ESCALATION_LOG, FAQS_FILE, etc.
-├─ requirements.txt           # Python dependencies
-├─ .env                       # Local environment variables (NOT committed)
-├─ data/
-│   └─ faqs.json              # Optional additional FAQ dataset
-├─ logs/
-│   └─ escalations.csv        # Auto-generated escalation records
-└─ .gitignore                 # Excludes venv, logs, .env, caches, etc.
-```
+SupportSphere acts as an automated helpdesk assistant.  
+When a user asks a question:
+
+1. The question is embedded into vector form.
+2. Pinecone retrieves the most relevant support articles.
+3. A FLAN-T5 model generates a helpful, conversational answer.
+4. The UI displays the response with a typing effect for realism.
+5. If needed, users may escalate the issue to human support.
+
+The system reduces support workload while still enabling human intervention when necessary.
 
 ---
 
-## ⚙️ Setup & Installation
+## ⭐ 2. Features & Limitations
 
-### 1. Clone the repository
+### ✅ **Features**
+
+- **RAG-based Answering**
+  - Retrieves top support entries from a Pinecone vector database.
+- **Generative Response**
+  - FLAN-T5-Large forms complete, friendly answers.
+- **Modern Streamlit UI**
+  - Dark theme, user & bot chat bubbles  
+  - Typing animation for the assistant  
+  - “Thinking…” loading spinner  
+- **FAQ Category Browser**
+  - Users can view sample FAQs by category.
+- **Escalation Logging**
+  - Logs escalated queries into `logs/escalations.csv`.
+- **Tone Selection**
+  - Choose “Formal” or “Friendly” reply style.
+
+### ⚠️ **Limitations**
+
+- Requires internet for Pinecone operations (unless using local DB).  
+- FLAN-T5-Large can be slow on low-spec machines (no GPU acceleration).  
+- Doesn’t currently store conversation context—answers are single-turn.  
+- Dataset quality directly affects retrieval quality.  
+- No authentication or role-based access in the UI.
+
+---
+
+## 🧰 3. Tech Stack & APIs Used
+
+### **Core Technologies**
+
+| Component | Technology |
+|----------|------------|
+| UI | Streamlit |
+| Embeddings | SentenceTransformers (MiniLM family) |
+| Vector Database | Pinecone Serverless |
+| Generator Model | FLAN-T5-Large |
+| Dataset | Bitext Customer Support Dataset |
+| Backend Code | Python |
+| Logging | CSV via pandas |
+| Environment Management | python-dotenv |
+
+### **APIs Used**
+
+- **Pinecone API**
+  - For index creation, vector upsert, similarity search.
+- **HuggingFace Transformers API**
+  - For FLAN-T5 loading and inference.
+- **HuggingFace Datasets API**
+  - For loading customer-support training data.
+
+---
+
+## 🛠️ 4. Setup & Run Instructions
+
+### **1. Clone the repository**
 
 ```bash
 git clone https://github.com/<your-username>/SupportSphere.git
 cd SupportSphere
 ```
 
-### 2. Create and activate a virtual environment
+---
 
-**Windows**
+### **2. Create a virtual environment**
+
+**Windows:**
 
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-**Linux / macOS**
+**macOS / Linux:**
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install dependencies
+---
+
+### **3. Install dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Your `requirements.txt` should include (at minimum):
-
-```text
-streamlit
-pandas
-python-dotenv
-sentence-transformers
-transformers
-torch
-pinecone-client
-datasets
-```
-
-Add any extra libraries you use.
-
 ---
 
-## 🔑 Environment Variables
+### **4. Add environment variables**
 
-Create a `.env` file in the project root:
+Create a file named `.env`:
 
-```text
+```ini
 PINECONE_API_KEY=your_api_key
 PINECONE_REGION=us-east-1
 PINECONE_INDEX_NAME=supportsphere-better
@@ -96,7 +126,7 @@ PINECONE_NAMESPACE=support
 
 ---
 
-## 🧭 Ingest Data Into Pinecone
+### **5. Ingest dataset into Pinecone**
 
 ```bash
 python ingest_to_pinecone.py
@@ -104,13 +134,13 @@ python ingest_to_pinecone.py
 
 ---
 
-## ▶️ Run the Chatbot
+### **6. Run the app**
 
 ```bash
 streamlit run app.py
 ```
 
-Access at:
+Visit:
 
 ```text
 http://localhost:8501
@@ -118,25 +148,35 @@ http://localhost:8501
 
 ---
 
-## 📞 Escalation Logging
+## 🚀 5. Potential Improvements
 
-Logged to:
+Here are future enhancements that could significantly level up the agent:
 
-```text
-logs/escalations.csv
-```
+### 🔹 Conversation Memory  
+Store entire chat context so the assistant can handle multi-turn conversations.
+
+### 🔹 Feedback Loop  
+Allow users to mark answers as Helpful or Not Helpful to refine dataset quality.
+
+### 🔹 Admin Dashboard  
+Supervisors can view escalations, stats, and retrain the model.
+
+### 🔹 Semantic Query Expansion  
+Improve retrieval robustness by enriching user queries.
+
+### 🔹 GPU Acceleration / Model Optimization  
+Use quantized FLAN or ONNX runtime for faster responses.
+
+### 🔹 User Authentication  
+Allow multiple support agents with different permission levels.
+
+### 🔹 Multi-Language Support  
+Embed answers with multilingual models (LaBSE, XLM-R).
 
 ---
 
-## 🌐 Deployment (Streamlit Community Cloud)
+## 📜 License
 
-Add these secrets under **Settings → Secrets**:
+This project is licensed under the **MIT License**.
 
-```toml
-PINECONE_API_KEY = "your_api_key"
-PINECONE_REGION = "us-east-1"
-PINECONE_INDEX_NAME = "supportsphere-better"
-PINECONE_NAMESPACE = "support"
-```
-
----
+You are free to use, modify, distribute, and sell the software as long as the original copyright notice and this permission notice are included in all copies or substantial portions of the software.
