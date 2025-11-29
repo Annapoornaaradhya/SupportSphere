@@ -1,0 +1,22 @@
+# --- Core ---
+streamlit
+python-dotenv
+pandas
+numpy
+
+# --- Embeddings ---
+sentence-transformers
+
+# --- Pinecone (official new SDK) ---
+pinecone
+
+# --- Transformers / LLM ---
+transformers>=4.38
+accelerate
+sentencepiece
+protobuf==3.20.3
+
+# --- Extras (safe) ---
+scikit-learn
+tqdm
+datasets

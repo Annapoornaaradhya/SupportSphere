@@ -1,0 +1,71 @@
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environment folders
+venv/
+env/
+.venv/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# -----------------------
+# Environment / Secrets
+# -----------------------
+.env
+.env.*
+*.env
+
+# Streamlit secrets (local only)
+.streamlit/secrets.toml
+
+# Never upload your keys
+
+*.pem
+*.key
+
+# -----------------------
+# OS / Editor Files
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# -----------------------
+# Cache / Logs
+# -----------------------
+logs/
+*.log
+.cache/
+pip-log.txt
+
+# -----------------------
+# Data Files (optional)
+# If you want to keep FAQ JSON, remove it here
+# -----------------------
+data/
+datasets/
+*.sqlite3
+
+# -----------------------
+# Misc
+# -----------------------
+*.bak
+*.tmp
